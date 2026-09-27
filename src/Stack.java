@@ -2,7 +2,7 @@
  * Stack is an object to keep track of the chip counts and transactions with chips
  * Only 1 bet can be placed from a stack at a time
  * @author Drew Walter
- * @version 1.0
+ * @version 1.2
  */
 public class Stack {
     ///default size of a stack
