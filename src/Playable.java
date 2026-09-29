@@ -4,5 +4,6 @@
  * @version 1.0
  */
 public interface Playable {
-    //TODO: implement
+    ///what a play should execute
+    public abstract void play();
 }

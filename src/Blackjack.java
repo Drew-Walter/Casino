@@ -5,4 +5,8 @@
  */
 public class Blackjack extends Game {
     //TODO: implement
+    @Override
+    public void play() {
+
+    }
 }

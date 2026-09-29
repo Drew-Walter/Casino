@@ -4,5 +4,6 @@
  * @version 1.0
  */
 public abstract class Game implements Playable {
-    //TODO: implement
+    @Override
+    public abstract void play();
 }
