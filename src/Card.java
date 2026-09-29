@@ -1,7 +1,7 @@
 /**
  * Stores the values associated with a card
  * @author Drew Walter
- * @version 1.0
+ * @version 1.2
  */
 public class Card implements Comparable<Card> {
 
