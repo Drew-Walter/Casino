@@ -5,6 +5,11 @@
  */
 public class Blackjack extends Game {
     //TODO: implement
+
+    ///constructor to handle default game generation
+    public Blackjack(){}
+
+    ///play functionality
     @Override
     public void play() {
 

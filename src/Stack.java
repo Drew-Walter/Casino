@@ -81,6 +81,11 @@ public class Stack {
         numberOfChips += addAmount;
     }
 
+    ///{@return the number of chips held and not in play}
+    public int getNumberOfChips(){
+        return numberOfChips;
+    }
+
 
     /**
      * payout the stack by whatever ratio is provided
