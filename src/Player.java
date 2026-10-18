@@ -48,7 +48,7 @@ public class Player {
         //determine which game is going to be getting played
         switch (currentlyPlaying){
             case BLACKJACK:
-                startBlackjack();
+                createBlackjackGame();
                 break;
             default:
                 throw new IllegalStateException("Unknown game type");
@@ -59,9 +59,9 @@ public class Player {
 
 
     /**
-     * starts the game of blackjack
+     * creates the game of blackjack
      */
-    private void startBlackjack(){
+    private void createBlackjackGame(){
         Scanner scanner = new Scanner(System.in);
         boolean validInput = false;
         while(!validInput) {

@@ -15,6 +15,12 @@ public class CasinoDriver {
         Player player = createPlayer(args, 0);
     }
 
+    /**
+     * creates a Player object from command line arguments
+     * @param names the command line arguments containing names for players
+     * @param indexToUseAsName the index in names being used
+     * @return a Player with the specified name, if index unavailable the Player has default name
+     */
     private static Player createPlayer(String[] names, int indexToUseAsName){
         Player player;
         if(names.length > indexToUseAsName) {
