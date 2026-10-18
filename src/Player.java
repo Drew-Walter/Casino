@@ -1,7 +1,10 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  * Allows creation of Players which contain chips and ability to play games
  * @author Drew Walter
- * @version 1.1
+ * @version 1.2
  */
 public class Player {
     ///the name of the player
@@ -45,7 +48,7 @@ public class Player {
         //determine which game is going to be getting played
         switch (currentlyPlaying){
             case BLACKJACK:
-                this.game = new Blackjack();
+                startBlackjack();
                 break;
             default:
                 throw new IllegalStateException("Unknown game type");
@@ -55,6 +58,24 @@ public class Player {
     }
 
 
+    /**
+     * starts the game of blackjack
+     */
+    private void startBlackjack(){
+        Scanner scanner = new Scanner(System.in);
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.println("How many decks? ");
+            try {
+                this.game = new Blackjack(scanner.nextInt()); //this will throw exceptions
+                validInput = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Input must be an integer.\nTry again.");
+            } catch (IllegalArgumentException e){
+                System.out.println("Number of decks chosen is invalid.\nTry again.");
+            }
+        }
+    }
 
     ///{@return details about the player}
     @Override
