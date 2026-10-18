@@ -6,7 +6,7 @@
  */
 public class Stack {
     ///default size of a stack
-    private static final int DEFAULT_STACK_SIZE = 100;
+    public static final int DEFAULT_STACK_SIZE = 100;
 
     ///how many chips are currently held
     private int numberOfChips;

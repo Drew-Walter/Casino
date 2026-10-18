@@ -24,14 +24,14 @@ public class Player {
 
     ///constructor to have default number of chips
     public Player(String name){
-        this.name = name;
-        this.stack = new Stack();
+        this(name, Stack.DEFAULT_STACK_SIZE);
     }
 
     ///constructor to specify name and number of chips
     public Player(String name, int numberOfChips){
         this.name = name;
         this.stack = new Stack(numberOfChips);
+        System.out.println("Welcome to the casino " + this.name + "!");
     }
 
     ///{@return the current game being played}
