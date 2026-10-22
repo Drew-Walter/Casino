@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Allows creation of Players which contain chips and ability to play games
  * @author Drew Walter
- * @version 1.2
+ * @version 1.3
  */
 public class Player {
     ///the name of the player
@@ -75,6 +75,13 @@ public class Player {
                 System.out.println("Number of decks chosen is invalid.\nTry again.");
             }
         }
+    }
+
+    /**
+     * {@return the name of the player}
+     */
+    public String getName(){
+        return name;
     }
 
     ///{@return details about the player}
