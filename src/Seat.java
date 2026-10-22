@@ -1,7 +1,7 @@
 /**
  * Allows the creation of a seat at a game that a player will take
  * @author Drew Walter
- * @version 1.0
+ * @version 1.1
  */
 public abstract class Seat {
     ///holds what player is in the seat
@@ -40,6 +40,29 @@ public abstract class Seat {
         } else{
             throw new IllegalStateException(playerSeated.getName() + " is already seated here");
         }
+    }
+
+    /**
+     * places a bet for the player seated
+     * @param betAmount the amount to bet
+     */
+    public void bet(int betAmount){
+        playerSeated.bet(betAmount);
+    }
+
+    /**
+     * pays out the bet for the specified amount
+     * @param payoutRatio the ratio to payout, see Stack for details
+     */
+    public void payout(int payoutRatio){
+        playerSeated.payout(payoutRatio);
+    }
+
+    /**
+     * {@return the seated player}
+     */
+    public Player getPlayer(){
+        return playerSeated;
     }
 
     /**
