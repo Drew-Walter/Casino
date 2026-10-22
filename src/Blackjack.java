@@ -1,7 +1,10 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * Stores the game of blackjack that can be played by only 1 player
  * @author Drew Walter
- * @version 1.2
+ * @version 1.3
  */
 public class Blackjack extends Game {
     ///maximum size that a shoe can be
@@ -14,6 +17,8 @@ public class Blackjack extends Game {
     private final int numberOfDecks;
     ///all seats that can have players
     private final BlackjackSeat[] seats;
+    ///players waiting to join blackjack, players can't leave the queue
+    private final Queue<Player> playersWaitingForSeats;
 
     /**
      * construct the blackjack object
@@ -25,6 +30,7 @@ public class Blackjack extends Game {
         this.numberOfDecks = numberOfDecks;
         seats = new BlackjackSeat[NUMBER_OF_SEATS];
         fillSeats(); //initialize seat values
+        playersWaitingForSeats = new ArrayDeque<>();
     }
 
     /**
@@ -67,16 +73,24 @@ public class Blackjack extends Game {
      */
     @Override
     public void addPlayer(Player player){
-        if(!isRoomAtTable()){
-            throw new IllegalStateException("This table is out of room");
-        }
-        for(int i = 0; i < seats.length; i++){ //find an empty seat
-            if(seats[i].isSeatEmpty()){
-                seats[i].addPlayerToSeat(player); //add them
+        playersWaitingForSeats.add(player);
+    }
+
+    /**
+     * takes people from the queue and adds them to any open seats
+     */
+    private void fillSeatsFromQueue(){
+        for (BlackjackSeat seat : seats) { //find an empty seat
+            if (seat.isSeatEmpty() && !playersWaitingForSeats.isEmpty()) { //empty spot and someone wants to take it
+                seat.addPlayerToSeat(playersWaitingForSeats.poll()); //add them
             }
         }
     }
 
+    /**
+     * removes the specified player from seats
+     * @param player the player to remove
+     */
     @Override
     public void removePlayer(Player player){
         //find the seat that has the player we are using
@@ -91,6 +105,7 @@ public class Blackjack extends Game {
     ///play functionality
     @Override
     public void play() {
+        fillSeatsFromQueue(); //fill seats when play is first called
         //TODO: implement
     }
 
