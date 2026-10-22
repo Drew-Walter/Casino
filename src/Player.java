@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Allows creation of Players which contain chips and ability to play games
  * @author Drew Walter
- * @version 1.4
+ * @version 1.5
  */
 public class Player implements Betting{
     ///used to give player id
@@ -53,13 +53,21 @@ public class Player implements Betting{
         //determine which game is going to be getting played
         switch (currentlyPlaying){
             case BLACKJACK:
-                createBlackjackGame();
+                joinBlackjackGame();
                 break;
             default:
+                currentlyPlaying = GameOptions.NOTHING; //invalid should give no game if caught
                 throw new IllegalStateException("Unknown game type");
         }
-        game.play(); //start up the game
+
+        //start up the game since the scope of this is only 1 player playing
+        //this line would be an issue once there is multiple people
+        //but the game should be designed to deal with it still, just the entry point is different
+        game.play();
+
+        //game done, cleanup
         game.removePlayer(this); //remove the player when done playing
+        game = null; //no longer in that game
         currentlyPlaying = GameOptions.NOTHING; //they have left the game and are playing nothing again
     }
 
@@ -83,21 +91,9 @@ public class Player implements Betting{
     /**
      * creates the game of blackjack
      */
-    private void createBlackjackGame(){
-        Scanner scanner = new Scanner(System.in);
-        boolean validInput = false;
-        while(!validInput) {
-            System.out.println("How many decks? ");
-            try {
-                this.game = new Blackjack(scanner.nextInt()); //this will throw exceptions
-                this.game.addPlayer(this); //add player to game
-                validInput = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Input must be an integer.\nTry again.");
-            } catch (IllegalArgumentException e){
-                System.out.println("Number of decks chosen is invalid.\nTry again.");
-            }
-        }
+    private void joinBlackjackGame(){
+        this.game = CasinoDriver.blackjacks.get(0); //join the first one for now
+        game.addPlayer(this); //puts them in line to play
     }
 
     /**
