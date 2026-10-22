@@ -13,6 +13,7 @@ public class CasinoDriver {
      */
     public static void main(String[] args) {
         Player player = createPlayer(args, 0);
+        player.play(GameOptions.BLACKJACK);
     }
 
     /**
