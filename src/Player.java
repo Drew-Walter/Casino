@@ -131,8 +131,15 @@ public class Player {
 
         Player other = (Player) obj;
 
-        return this.playerID == other.playerID;
+        return this.playerID == other.playerID; //id is unique identifier
     }
+
+    ///{@return the hashcode for the player}
+    @Override
+    public int hashCode(){
+        return playerID * 31;
+    }
+    
     ///{@return details about the player}
     @Override
     public String toString(){

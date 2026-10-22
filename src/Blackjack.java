@@ -43,7 +43,7 @@ public class Blackjack extends Game {
      */
     private void fillSeats(){
         for(int i = 0; i < seats.length; i++){
-            seats[i] = new BlackjackSeat();
+            seats[i] = new BlackjackSeat(); //all seats are initially empty
         }
     }
 
@@ -53,7 +53,7 @@ public class Blackjack extends Game {
      */
     public boolean isRoomAtTable(){
         for(BlackjackSeat seat : seats){
-            if(seat.isSeatEmpty()){
+            if(seat.isSeatEmpty()){ //empty seat found
                 return true;
             }
         }
@@ -62,23 +62,28 @@ public class Blackjack extends Game {
 
     /**
      * adds a player to the blackjack game
-     * assumes that there is room to add them
+     * needs an empty seat to do so
      * @param player the player to add
      */
     @Override
     public void addPlayer(Player player){
+        if(!isRoomAtTable()){
+            throw new IllegalStateException("This table is out of room");
+        }
         for(int i = 0; i < seats.length; i++){ //find an empty seat
             if(seats[i].isSeatEmpty()){
-                seats[i].addPlayerToSeat(player);
+                seats[i].addPlayerToSeat(player); //add them
             }
         }
     }
 
     @Override
     public void removePlayer(Player player){
+        //find the seat that has the player we are using
         for(int i = 0; i < seats.length; i++){
+            //comparing reference should also work, but this is stronger
             if(seats[i].getPlayer().equals(player)){
-                seats[i] = null;
+                seats[i].removePlayerFromSeat(); //remove the player, not the seat
             }
         }
     }
