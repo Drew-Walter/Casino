@@ -93,4 +93,11 @@ public class Blackjack extends Game {
     public void play() {
         //TODO: implement
     }
+
+    ///{@return the current game state}
+    @Override
+    public String toString(){
+        //TODO: implement
+        return null;
+    }
 }

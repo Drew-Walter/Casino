@@ -1,5 +1,6 @@
 /**
  * Allows the creation of a seat at a game that a player will take
+ * each game should have a specialized version of this class for any non-generic behavior
  * @author Drew Walter
  * @version 1.1
  */

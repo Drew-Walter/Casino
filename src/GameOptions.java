@@ -1,5 +1,6 @@
 /**
  * stores all game options that the player has to play
+ * adding a game here requires a change to Player.play()
  * @author Drew Walter
  * @version 1.0
  */

@@ -1,5 +1,6 @@
 /**
  * Stores the values associated with a card
+ * cards have a natural ordering based first on rank, then suit
  * @author Drew Walter
  * @version 1.2
  */

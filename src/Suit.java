@@ -29,4 +29,21 @@ public enum Suit {
     public int getValue() {
         return value;
     }
+
+    ///{@return the suit value of the card
+    @Override
+    public String toString(){
+        switch(value){
+            case 1:
+                return "Clubs";
+            case 2:
+                return "Diamonds";
+            case 3:
+                return "Hearts";
+            case 4:
+                return "Spades";
+            default:
+                return ""; //should be unreachable
+        }
+    }
 }
