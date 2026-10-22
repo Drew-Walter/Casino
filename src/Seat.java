@@ -4,7 +4,7 @@
  * @author Drew Walter
  * @version 1.1
  */
-public abstract class Seat {
+public abstract class Seat implements Betting{
     ///holds what player is in the seat
     private Player playerSeated;
 

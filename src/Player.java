@@ -6,7 +6,7 @@ import java.util.Scanner;
  * @author Drew Walter
  * @version 1.4
  */
-public class Player {
+public class Player implements Betting{
     ///used to give player id
     private static int playersCreated = 0;
     ///used to identify a player

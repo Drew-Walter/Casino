@@ -4,7 +4,7 @@
  * @author Drew Walter
  * @version 1.2
  */
-public class Stack {
+public class Stack implements Betting{
     ///default size of a stack
     public static final int DEFAULT_STACK_SIZE = 100;
 
