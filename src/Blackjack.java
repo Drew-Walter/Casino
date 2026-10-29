@@ -4,7 +4,7 @@ import java.util.Queue;
 /**
  * Stores the game of blackjack that can be played by only 1 player
  * @author Drew Walter
- * @version 1.3
+ * @version 1.4
  */
 public class Blackjack extends Game {
     ///maximum size that a shoe can be
@@ -13,12 +13,21 @@ public class Blackjack extends Game {
     private static final int MIN_SHOE_SIZE = 2;
     ///the number of seats a game has
     private static final int NUMBER_OF_SEATS = 6;
-    ///how many decks are being used
-    private final int numberOfDecks;
+    ///payout ratio for blackjack
+    private static final double BLACKJACK_PAYOUT_RATIO = 2.5;
+    ///payout for push ratio when a tie happens
+    private static final int PUSH_PAYOUT_RATIO = 1;
+    ///normal payout ratio
+    private static final int NORMAL_PAYOUT_RATIO = 2;
+    ///number of cards remaining to dictate a shuffle is needed
+    private static final int CARDS_TO_DICTATE_SHUFFLE = 30;
+    ///the shoe that all the cards are stored in
+    private Deck shoe;
     ///all seats that can have players
     private final BlackjackSeat[] seats;
     ///players waiting to join blackjack, players can't leave the queue
     private final Queue<Player> playersWaitingForSeats;
+
 
     /**
      * construct the blackjack object
@@ -26,8 +35,11 @@ public class Blackjack extends Game {
      * @throws IllegalArgumentException for invalid number of decks
      */
     public Blackjack(int numberOfDecks) throws IllegalArgumentException{
+        //create the deck
         checkValidDecks(numberOfDecks);
-        this.numberOfDecks = numberOfDecks;
+        this.shoe = new Deck(numberOfDecks);
+
+        //create seating
         seats = new BlackjackSeat[NUMBER_OF_SEATS];
         fillSeats(); //initialize seat values
         playersWaitingForSeats = new ArrayDeque<>();
@@ -107,6 +119,13 @@ public class Blackjack extends Game {
     public void play() {
         fillSeatsFromQueue(); //fill seats when play is first called
         //TODO: implement
+    }
+
+    /**
+     * {@return true if there are too few cards remaining and a shuffle is required}
+     */
+    private boolean isShuffleNeeded(){
+        return shoe.size() < CARDS_TO_DICTATE_SHUFFLE;
     }
 
     ///{@return the current game state}
